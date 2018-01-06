@@ -6,4 +6,4 @@ php:
 
 install:
     - composer self-update
-    - composer install --no-interaction
+    - composer update --no-interaction
