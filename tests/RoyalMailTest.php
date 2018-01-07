@@ -73,6 +73,14 @@ class RoyalMailTest extends TestCase
         $this->assertEquals(200, $rm->getPrice(2000, [45, 35, 16]));
     }
 
+    public function testGetPriceForSmallPackageOver2Kg()
+    {
+        $rm = $this->royalMail;
+
+        // Exceeds weight limit for small package so should use medium package pricing
+        $this->assertEquals(500, $rm->getPrice(2001, [45, 35, 16]));
+    }
+
     public function testGetPriceForMediumPackageInFirstPriceBand()
     {
         $rm = $this->royalMail;
