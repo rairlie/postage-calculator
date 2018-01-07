@@ -25,7 +25,7 @@ class ParcelForce
 
             if ($weight >= $band['minWeight'] && $band['maxWeight'] === null) {
                 if ($basePrice === null) {
-                    throw new ServiceUnavailableException();
+                    throw new ServiceUnavailableException("Cant send {$weight}g package with $method");
                 }
                 $additionalWeightKg = ($weight - $band['minWeight']) / 1000;
                 $additionalWeightKg = ceil($additionalWeightKg);
@@ -33,7 +33,7 @@ class ParcelForce
                 return $basePrice + ($additionalWeightKg * $band['pricesAddPerKg'][$priceIndex]);
             } elseif ($weight >= $band['minWeight'] && $weight <= $band['maxWeight']) {
                 if ($basePrice === null) {
-                    throw new ServiceUnavailableException();
+                    throw new ServiceUnavailableException("Cant send {$weight}g package with $method");
                 }
                 return $band['prices'][$priceIndex];
             }

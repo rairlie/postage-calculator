@@ -104,6 +104,7 @@ class ParcelForceTest extends TestCase
 
     /**
      * @expectedException Rairlie\PostageCalculator\Exceptions\ServiceUnavailableException
+     * @expectedExceptionMessage Cant send 5001g package with DROP_POST_OFFICE
      */
     public function testItThrowsAnExceptionWhenServiceNotAvailable()
     {
@@ -131,6 +132,7 @@ class ParcelForceTest extends TestCase
 
     /**
      * @expectedException Rairlie\PostageCalculator\Exceptions\ServiceUnavailableException
+     * @expectedExceptionMessage Cant send 10001g package with DROP_POST_OFFICE
      */
     public function testItThrowsAnExceptionWhenServiceNotAvailableWhenNoMaxWeight()
     {
