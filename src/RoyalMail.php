@@ -42,6 +42,6 @@ class RoyalMail
         }
 
         // Should never get here
-        throw new LogicException("Did not find a price");
+        throw new \LogicException("Did not find a price");
     }
 }
