@@ -110,7 +110,7 @@ class RoyalMailTest extends TestCase
     }
 
     /**
-     * @expectedException Rairlie\PostageCalculator\Exceptions\ServiceUnavailableException
+     * @expectedException Rairlie\PostageCalculator\Exceptions\ParcelTooHeavyException
      * @expectedExceptionMessage Cant deliver 20001g parcel with Royal Mail - exceeds max weight
      */
     public function testItThrowsExceptionIfExeedsMaxWeight()
@@ -119,7 +119,7 @@ class RoyalMailTest extends TestCase
     }
 
     /**
-     * @expectedException Rairlie\PostageCalculator\Exceptions\ServiceUnavailableException
+     * @expectedException Rairlie\PostageCalculator\Exceptions\ParcelTooLargeException
      * @expectedExceptionMessage Cant deliver large dimension parcels (62 x 46 x 46) with Royal Mail
      */
     public function testItThrowsExceptionIfExeedsMaxDimensions()

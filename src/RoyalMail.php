@@ -1,7 +1,8 @@
 <?php
 namespace Rairlie\PostageCalculator;
 
-use Rairlie\PostageCalculator\Exceptions\ServiceUnavailableException;
+use Rairlie\PostageCalculator\Exceptions\ParcelTooLargeException;
+use Rairlie\PostageCalculator\Exceptions\ParcelTooHeavyException;
 
 class RoyalMail
 {
@@ -23,7 +24,7 @@ class RoyalMail
         } elseif ($length <= $dimMed[0] && $width <= $dimMed[1] && $depth <= $dimMed[2]) {
             $packageSize = self::PACKAGE_MEDIUM;
         } else {
-            throw new ServiceUnavailableException("Cant deliver large dimension parcels ($length x $width x $depth) with Royal Mail");
+            throw new ParcelTooLargeException("Cant deliver large dimension parcels ($length x $width x $depth) with Royal Mail");
         }
 
         if ($weight > $this->getMaxParcelWeight($packageSize)) {
@@ -33,7 +34,7 @@ class RoyalMail
                 // Exceeds max weight for this size - bump to next band
                 $packageSize = self::PACKAGE_MEDIUM;
             } else {
-                throw new ServiceUnavailableException("Cant deliver {$weight}g parcel with Royal Mail - exceeds max weight");
+                throw new ParcelTooHeavyException("Cant deliver {$weight}g parcel with Royal Mail - exceeds max weight");
             }
         }
 
