@@ -1,4 +1,20 @@
 <?php
+/**
+ * Array of price bands used for a Parcelforce service
+ *
+ * For each price band we have:
+ * 'minWeight': minimum weight for this price band
+ * 'maxWeight': maximum weight for this price band
+ * 'prices': array of:
+ *     - price for ParcelForce::METHOD_COLLECT
+ *     - price for ParcelForce::METHOD_DROP_POST_OFFICE
+ *     - price for ParcelForce::METHOD_DROP_DEPOT
+ *     - price for ParcelForce::METHOD_DEPOT_TO_DEPOT
+ *
+ * If a price is null it indicates the method is unavailable for that price band.
+ *
+ * If 'maxWeight' is null a price-per-kg value will be added to the base price.
+ */
 return [
     [
         'minWeight' => 0,

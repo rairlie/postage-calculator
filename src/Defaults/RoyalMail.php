@@ -1,4 +1,14 @@
 <?php
+/**
+ * Array of price bands used for a RoyalMail service
+ *
+ * Price bands are grouped by parcel dimension.
+ *
+ * In each band we have:
+ * 'minWeight': minimum weight for this price band
+ * 'maxWeight': maximum weight for this price band
+ * 'price': price for parcel falling within this range
+ */
 return [
     'small' => [
         'maxDimensions' => [45, 35, 16],
