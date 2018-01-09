@@ -30,7 +30,7 @@ PHP 7.0+
         
 Parcelforce parcels can be sent by four methods:
 
-* ParcelForce::METHOD_COLLECT - Parcel to be collected from chosen address
+* ParcelForce::METHOD_COLLECT - Parcel to be collected from a pick-up address
 * ParcelForce::METHOD_DROP_POST_OFFICE - Parcel to be dropped at a PostOffice
 * ParcelForce::METHOD_DROP_DEPOT - Parcel to be dropped at a depot
 * ParcelForce::METHOD_DEPOT_TO_DEPOT - Parcel to be dropped at and collected from a depot
