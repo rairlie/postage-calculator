@@ -103,10 +103,10 @@ class ParcelForceTest extends TestCase
     }
 
     /**
-     * @expectedException Rairlie\PostageCalculator\Exceptions\ServiceUnavailableException
+     * @expectedException Rairlie\PostageCalculator\Exceptions\MethodUnavailableException
      * @expectedExceptionMessage Cant send 5001g package with DROP_POST_OFFICE
      */
-    public function testItThrowsAnExceptionWhenServiceNotAvailable()
+    public function testItThrowsAnExceptionWhenMethodNotAvailable()
     {
         $this->assertNull($this->getDropPOPrice(5001));
     }
@@ -131,19 +131,19 @@ class ParcelForceTest extends TestCase
     }
 
     /**
-     * @expectedException Rairlie\PostageCalculator\Exceptions\ServiceUnavailableException
+     * @expectedException Rairlie\PostageCalculator\Exceptions\MethodUnavailableException
      * @expectedExceptionMessage Cant send 10001g package with DROP_POST_OFFICE
      */
-    public function testItThrowsAnExceptionWhenServiceNotAvailableWhenNoMaxWeight()
+    public function testItThrowsAnExceptionWhenMethodNotAvailableWhenNoMaxWeight()
     {
         $this->assertNull($this->getDropPOPrice(10001));
     }
 
     /**
-     * @expectedException Rairlie\PostageCalculator\Exceptions\PriceNotFoundException
-     * @expectedExceptionMessage Could not find price for weight 2001g
+     * @expectedException Rairlie\PostageCalculator\Exceptions\ParcelTooHeavyException
+     * @expectedExceptionMessage Could not find a price for weight 2001g
      */
-    public function testItThrowsAnExceptionWhenPriceNotFound()
+    public function testItThrowsAnExceptionWhenParcelTooHeavy()
     {
         $parcelForce = new ParcelForce([
             [

@@ -1,6 +1,6 @@
 <?php
 namespace Rairlie\PostageCalculator\Exceptions;
 
-class ParcelTooLargeException extends ServiceUnavailableException
+class ParcelTooLargeException extends \Exception
 {
 }

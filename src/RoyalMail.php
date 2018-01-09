@@ -46,7 +46,18 @@ class RoyalMail
         return (end($this->parcelSizes[$packageSize]['priceBands']))['maxWeight'];
     }
 
-    public function getPrice($weight, $dimensions)
+    /**
+     * Calculate the price for a parcel
+     *
+     * @param int $weight        Weight of the parcel in grams
+     * @param array $dimensions  Parcel dimensions - length, width, depth
+     * @return int               Price in pence
+     *
+     * @throws Rairlie\PostageCalculator\Exceptions\ParcelTooHeavyException
+     * @throws Rairlie\PostageCalculator\Exceptions\ParcelTooLargeException
+     * @throws LogicException
+     */
+    public function getPrice(int $weight, array $dimensions)
     {
         foreach ($this->getParcelPriceBands($weight, $dimensions[0], $dimensions[1], $dimensions[2]) as $band) {
             if ($weight >= $band['minWeight'] && $weight <= $band['maxWeight']) {

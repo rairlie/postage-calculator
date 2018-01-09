@@ -1,8 +1,8 @@
 <?php
 namespace Rairlie\PostageCalculator;
 
-use Rairlie\PostageCalculator\Exceptions\ServiceUnavailableException;
-use Rairlie\PostageCalculator\Exceptions\PriceNotFoundException;
+use Rairlie\PostageCalculator\Exceptions\MethodUnavailableException;
+use Rairlie\PostageCalculator\Exceptions\ParcelTooHeavyException;
 
 class ParcelForce
 {
@@ -16,7 +16,17 @@ class ParcelForce
         $this->priceBands = $priceBands;
     }
 
-    public function getPrice($weight, $method)
+    /**
+     * Calculate the price for a parcel
+     *
+     * @param int    $weight  Weight of the parcel in grams
+     * @param string $method  Method const (collect, drop post office, etc)
+     * @return int            Price in pence
+     *
+     * @throws Rairlie\PostageCalculator\Exceptions\ParcelTooHeavyException
+     * @throws Rairlie\PostageCalculator\Exceptions\MethodUnavailableException
+     */
+    public function getPrice(int $weight, string $method)
     {
         $priceIndex = $this->getPriceIndex($method);
 
@@ -24,8 +34,9 @@ class ParcelForce
             $basePrice = $band['prices'][$priceIndex];
 
             if ($weight >= $band['minWeight'] && $band['maxWeight'] === null) {
+                // Price band has unbounded weight - use a price-per-kg method
                 if ($basePrice === null) {
-                    throw new ServiceUnavailableException("Cant send {$weight}g package with $method");
+                    throw new MethodUnavailableException("Cant send {$weight}g package with $method");
                 }
                 $additionalWeightKg = ($weight - $band['minWeight']) / 1000;
                 $additionalWeightKg = ceil($additionalWeightKg);
@@ -33,13 +44,14 @@ class ParcelForce
                 return $basePrice + ($additionalWeightKg * $band['pricesAddPerKg'][$priceIndex]);
             } elseif ($weight >= $band['minWeight'] && $weight <= $band['maxWeight']) {
                 if ($basePrice === null) {
-                    throw new ServiceUnavailableException("Cant send {$weight}g package with $method");
+                    throw new MethodUnavailableException("Cant send {$weight}g package with $method");
                 }
                 return $band['prices'][$priceIndex];
             }
         }
 
-        throw new PriceNotFoundException("Could not find price for weight {$weight}g");
+        // Will only get here if the config does not have unbounded max weight
+        throw new ParcelTooHeavyException("Could not find a price for weight {$weight}g");
     }
 
     private function getPriceIndex($method)
