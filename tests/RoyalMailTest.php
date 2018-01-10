@@ -126,4 +126,31 @@ class RoyalMailTest extends TestCase
     {
         $this->royalMail->getPrice(1, [62, 46, 46]);
     }
+
+    /**
+     * @expectedException RuntimeException
+     * @expectedExceptionMessage Couldn't find a price - bad config?
+     */
+    public function testBadConfig()
+    {
+        $royalMail = new RoyalMail([
+            'small' => [
+                'maxDimensions' => [10, 10, 10],
+                'priceBands' => [
+                    [
+                        // Bad config - min weight > max weight
+                        'minWeight' => 1000,
+                        'maxWeight' => 1,
+                        'price' => 100,
+                    ],
+                ],
+            ],
+            'medium' => [
+                'maxDimensions' => [20, 20, 20],
+                'priceBands' => [],
+            ],
+        ]);
+
+        $royalMail->getPrice(1, [1, 1, 1]);
+    }
 }

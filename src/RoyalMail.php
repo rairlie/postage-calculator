@@ -59,7 +59,7 @@ class RoyalMail
      *
      * @throws Rairlie\PostageCalculator\Exceptions\ParcelTooHeavyException
      * @throws Rairlie\PostageCalculator\Exceptions\ParcelTooLargeException
-     * @throws LogicException
+     * @throws RuntimeException
      */
     public function getPrice(int $weight, array $dimensions)
     {
@@ -69,7 +69,6 @@ class RoyalMail
             }
         }
 
-        // Should never get here
-        throw new \LogicException("Did not find a price");
+        throw new \RuntimeException("Couldn't find a price - bad config?");
     }
 }
