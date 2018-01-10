@@ -9,4 +9,8 @@ install:
 
 script:
     - vendor/bin/phpcs --standard=psr2 src tests
-    - vendor/bin/phpunit
+    - mkdir -p build/logs
+    - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
+after_success:
+    - travis_retry php vendor/bin/php-coveralls
