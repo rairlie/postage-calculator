@@ -78,4 +78,25 @@ class PostageCalculatorTest extends TestCase
                 ->getPrice(1, ParcelForce::METHOD_DEPOT_TO_DEPOT)
         );
     }
+
+    public function testSetCustomDefaults()
+    {
+        $calc = new PostageCalculator([
+            PostageCalculator::SERVICE_PARCELFORCE_24 => [
+                [
+                    'minWeight' => 0,
+                    'maxWeight' => 2000,
+                    'prices' => [
+                        100, 200, 300, 400,
+                    ],
+                ],
+            ],
+        ]);
+
+        $this->assertEquals(
+            100,
+            $calc->getService(PostageCalculator::SERVICE_PARCELFORCE_24)
+                ->getPrice(1, ParcelForce::METHOD_COLLECT)
+        );
+    }
 }
