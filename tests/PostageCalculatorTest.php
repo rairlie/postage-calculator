@@ -79,6 +79,15 @@ class PostageCalculatorTest extends TestCase
         );
     }
 
+    /**
+     * @expectedException RuntimeException
+     * @expectedExceptionMessage Unknown service 'blah'
+     */
+    public function testInvalidService()
+    {
+        $this->calc->getService('blah');
+    }
+
     public function testSetCustomDefaults()
     {
         $calc = new PostageCalculator([

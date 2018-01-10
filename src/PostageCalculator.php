@@ -20,6 +20,13 @@ class PostageCalculator
         }
     }
 
+    /**
+     * Get a postage calculator service
+     *
+     * @param string $service  Service constant
+     * @return RoyalMail|ParcelForce  Service object
+     * @throws \RuntimeException
+     */
     public function getService($service)
     {
         switch ($service) {
@@ -30,5 +37,7 @@ class PostageCalculator
             case self::SERVICE_PARCELFORCE_48:
                 return new ParcelForce($this->defaults[$service]);
         }
+
+        throw new \RuntimeException("Unknown service '$service'");
     }
 }
