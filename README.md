@@ -1,4 +1,4 @@
-# postage-calculator [![Build Status](https://travis-ci.org/rairlie/postage-calculator.svg?branch=master)](https://travis-ci.org/rairlie/postage-calculator)
+# postage-calculator [![Build Status](https://travis-ci.org/rairlie/postage-calculator.svg?branch=master)](https://travis-ci.org/rairlie/postage-calculator) [![Coverage Status](https://coveralls.io/repos/github/rairlie/postage-calculator/badge.svg?branch=master)](https://coveralls.io/github/rairlie/postage-calculator?branch=master)
 Calculates price for UK postal services
 
 ## Requires
