@@ -17,7 +17,7 @@ class PostageCalculatorTest extends TestCase
     public function testRoyalMail()
     {
         $this->assertEquals(
-            340,
+            370,
             $this->calc
                 ->getService(PostageCalculator::SERVICE_ROYAL_MAIL)
                 ->getPrice(1, [1, 1, 1])
