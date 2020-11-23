@@ -16,12 +16,12 @@ return [
             [
                 'minWeight' => 0,
                 'maxWeight' => 1000,
-                'price' => 340,
+                'price' => 370,
             ],
             [
                 'minWeight' => 1000,
                 'maxWeight' => 2000,
-                'price' => 550,
+                'price' => 557,
             ],
         ],
     ],
@@ -31,12 +31,12 @@ return [
             [
                 'minWeight' => 0,
                 'maxWeight' => 1000,
-                'price' => 570,
+                'price' => 590,
             ],
             [
                 'minWeight' => 1000,
                 'maxWeight' => 2000,
-                'price' => 895,
+                'price' => 902,
             ],
             [
                 'minWeight' => 2000,
